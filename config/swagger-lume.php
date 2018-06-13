@@ -45,7 +45,7 @@ return [
         | Absolute path to directory containing the swagger annotations are stored.
         |--------------------------------------------------------------------------
          */
-        'annotations' => base_path(env('SWAGGER_ANNOTATION_CHECK_FOLDER', "vendor/waveRFID")),
+        'annotations' => base_path(env('SWAGGER_ANNOTATION_CHECK_FOLDER', "waverfid")),
 
         /*
         |--------------------------------------------------------------------------
@@ -153,7 +153,7 @@ return [
     |--------------------------------------------------------------------------
      */
     'constants' => [
-        //'SWAGGER_LUME_CONST_HOST' => env('SWAGGER_LUME_CONST_HOST', 'http://my-default-host.com'),
+        'WAVE_API_DOMAIN' => env('WAVE_API_DOMAIN', 'http://api-new.waverfid.local'),
     ],
 
 ];

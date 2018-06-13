@@ -28,7 +28,7 @@ class ServiceProvider extends \Waverfid\Core\BaseServiceProvider
         $viewPath = __DIR__.'/../resources/views';
         $this->loadViewsFrom($viewPath, 'swagger-lume');
 
-        $this->app->group(['namespace' => 'SwaggerLume'], function ($app) {
+        $this->app->router->group(['namespace' => 'SwaggerLume'], function ($app) {
             require __DIR__.'/routes.php';
         });
     }
