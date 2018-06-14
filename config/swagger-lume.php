@@ -9,34 +9,6 @@ return [
         |--------------------------------------------------------------------------
          */
         'title' => 'WaveRFID API',
-
-        /*
-        |--------------------------------------------------------------------------
-        | Auth token prefix, which will be appended to submitted auth_token/key
-        |--------------------------------------------------------------------------
-         */
-        'auth_token_prefix' => env('API_AUTH_TOKEN_PREFIX', ''),
-
-        /*
-        |--------------------------------------------------------------------------
-        | Edit to set the api's Auth token
-        |--------------------------------------------------------------------------
-         */
-        'auth_token' => env('API_AUTH_TOKEN', false),
-
-        /*
-        |--------------------------------------------------------------------------
-        | Edit to set the api key variable in interface
-        |--------------------------------------------------------------------------
-         */
-        'key_var' => env('API_KEY_VAR', 'api_key'),
-
-        /*
-        |--------------------------------------------------------------------------
-        | Edit to set where to inject api key (header, query)
-        |--------------------------------------------------------------------------
-         */
-        'key_inject' => env('API_KEY_INJECT', 'query'),
         /*
         |--------------------------------------------------------------------------
         | Edit to set the api's version number
@@ -73,7 +45,7 @@ return [
         | Absolute path to directory containing the swagger annotations are stored.
         |--------------------------------------------------------------------------
          */
-        'annotations' => base_path(env('SWAGGER_ANNOTATION_CHECK_FOLDER',"vendor/waveRFID")),
+        'annotations' => base_path(env('SWAGGER_ANNOTATION_CHECK_FOLDER', "vendor/waveRFID")),
 
         /*
         |--------------------------------------------------------------------------
@@ -101,7 +73,7 @@ return [
         | Absolute path to directories that you would like to exclude from swagger generation
         |--------------------------------------------------------------------------
          */
-        'excludes' => ['SwaggerLume'],
+        'excludes' => ['swagger-lume'],
     ],
 
     /*
@@ -124,6 +96,27 @@ return [
     |--------------------------------------------------------------------------
      */
     'proxy' => false,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Edit to change layout of GUI ( 'none', 'list' or 'full')
+    |--------------------------------------------------------------------------
+    */
+    'docExpansion' => env('SWAGGER_DOC_EXPANSION', 'none'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Edit to change the maximum number of characters to highlight code.
+    |--------------------------------------------------------------------------
+    */
+    'highlightThreshold' => env('SWAGGER_HIGHLIGHT_THRESHOLD', 5000),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Edit to change the maximum number of characters to highlight code.
+    |--------------------------------------------------------------------------
+    */
+    'apisSorter' => env('SWAGGER_API_SORTER', 'alpha'),
 
     /*
      |--------------------------------------------------------------------------
@@ -152,6 +145,15 @@ return [
         /*"request" => [
     'TestMe' => 'testValue'
     ],*/
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Uncomment to add constants which can be used in anotations
+    |--------------------------------------------------------------------------
+     */
+    'constants' => [
+        //'SWAGGER_LUME_CONST_HOST' => env('SWAGGER_LUME_CONST_HOST', 'http://my-default-host.com'),
     ],
 
 ];
