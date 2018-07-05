@@ -1,11 +1,9 @@
 <?php
 
-namespace Tests;
-
 class RoutesTest extends LumenTestCase
 {
     /** @test */
-    public function cantAccessJsonFile()
+    public function cant_access_json_file()
     {
         $jsonUrl = config('swagger-lume.routes.docs');
 
@@ -15,7 +13,7 @@ class RoutesTest extends LumenTestCase
     }
 
     /** @test */
-    public function canAccessJsonFile()
+    public function can_access_json_file()
     {
         $jsonUrl = config('swagger-lume.routes.docs');
 
@@ -27,7 +25,7 @@ class RoutesTest extends LumenTestCase
     }
 
     /** @test */
-    public function canAccessDocumentationInterface()
+    public function can_access_documentation_interface()
     {
         $this->setPaths();
 
@@ -36,6 +34,12 @@ class RoutesTest extends LumenTestCase
         $response = $this->get(config('swagger-lume.routes.api'));
 
         $this->assertResponseOk();
+
+        $this->assertContains($this->auth_token_prefix, $response->response->getContent());
+
+        $this->assertContains($this->auth_token, $response->response->getContent());
+
+        $this->assertContains($this->key_var, $response->response->getContent());
 
         $this->assertContains($this->validator_url, $response->response->getContent());
     }

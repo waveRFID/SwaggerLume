@@ -9,7 +9,7 @@ use SwaggerLume\Console\PublishAssetsCommand;
 use SwaggerLume\Console\PublishConfigCommand;
 use \Waverfid\Common\CommonServiceProvider ;
 
-class ServiceProvider extends \Waverfid\Core\BaseServiceProvider
+class ServiceProvider extends CommonServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -44,25 +44,35 @@ class ServiceProvider extends \Waverfid\Core\BaseServiceProvider
         $configArray = @array_merge([], require __DIR__ . '/../config/swagger-lume.php');
         $this->app['config']->set('swagger-lume', $configArray);
 
-        $this->app->singleton('command.swagger-lume.publish', function () {
-            return new PublishCommand();
-        });
+        $this->app['command.swagger-lume.publish'] = $this->app->share(
+            function () {
+                return new PublishCommand();
+            }
+        );
 
-        $this->app->singleton('command.swagger-lume.publish-config', function () {
-            return new PublishConfigCommand();
-        });
+        // $this->app['command.swagger-lume.publish-config'] = $this->app->share(
+        //     function () {
+        //         return new PublishConfigCommand();
+        //     }
+        // );
 
-        $this->app->singleton('command.swagger-lume.publish-views', function () {
-            return new PublishViewsCommand();
-        });
+        $this->app['command.swagger-lume.publish-views'] = $this->app->share(
+            function () {
+                return new PublishViewsCommand();
+            }
+        );
 
-        $this->app->singleton('command.swagger-lume.publish-assets', function () {
-            return new PublishAssetsCommand();
-        });
+        $this->app['command.swagger-lume.publish-assets'] = $this->app->share(
+            function () {
+                return new PublishAssetsCommand();
+            }
+        );
 
-        $this->app->singleton('command.swagger-lume.generate', function () {
-            return new GenerateDocsCommand();
-        });
+        $this->app['command.swagger-lume.generate'] = $this->app->share(
+            function () {
+                return new GenerateDocsCommand();
+            }
+        );
 
         $this->commands(
             'command.swagger-lume.publish',
